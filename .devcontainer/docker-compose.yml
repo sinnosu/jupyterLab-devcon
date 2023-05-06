@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  notebook:
+    image: jupyter/datascience-notebook:latest
+    ports:
+      - '8888:8888'
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    # プロジェクトフォルダのpathを指定して、workspace（開発用コンテナ内の作業場所）にマウント
+    volumes:
+      - ../:/workspace:cached
+    # コンテナ切断をしないように指示
+    command: /bin/sh -c 'while sleep 1000; do :; done'
